@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 // UI-only: receive a simple map
 
 class NewsDetailScreen extends StatelessWidget {
-  final dynamic article;
+  final Map<String, dynamic> article;
 
   const NewsDetailScreen({super.key, required this.article});
 
@@ -27,9 +27,9 @@ class NewsDetailScreen extends StatelessWidget {
                 fit: StackFit.expand,
                 children: [
                   Hero(
-                    tag: "image_${article['source']['id']}",
+                    tag: "image_${article['id']}",
                     child: Image.network(
-                      article['urlToImage'],
+                      article['imageUrl'],
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -48,7 +48,7 @@ class NewsDetailScreen extends StatelessWidget {
                 ],
               ),
               title: Text(
-                article['source']['name'],
+                article['source'],
                 style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w700,
@@ -71,7 +71,7 @@ class NewsDetailScreen extends StatelessWidget {
                     ),
                     const SizedBox(width: 6),
                     Text(
-                      article['source']['name'],
+                      article['source'],
                       style: TextStyle(
                         color: scheme.onSurfaceVariant,
                         fontWeight: FontWeight.w600,
@@ -85,11 +85,7 @@ class NewsDetailScreen extends StatelessWidget {
                     ),
                     const SizedBox(width: 6),
                     Text(
-                      _timeAgo(
-                        DateTime.parse(
-                          article['publishedAt'] ?? "2024-01-01T00:00:00Z",
-                        ),
-                      ),
+                      _timeAgo(article['publishedAt'] as DateTime),
                       style: TextStyle(color: scheme.onSurfaceVariant),
                     ),
                   ],
