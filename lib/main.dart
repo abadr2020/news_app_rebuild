@@ -19,3 +19,8 @@ class NewsApp extends StatelessWidget {
     );
   }
 }
+
+/// To-DO:
+/// Add dio service for API calls
+/// Add Service for fetching news articles
+/// Add models for news articles
