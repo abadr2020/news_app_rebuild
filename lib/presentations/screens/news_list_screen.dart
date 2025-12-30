@@ -120,7 +120,7 @@ class _NewsListScreenState extends State<NewsListScreen> {
                     id: a.id,
                     title: a.title,
                     description: a.description,
-                    imageUrl: a.imageUrl ?? "https://via.placeholder.com/150",
+                    imageUrl: a.imageUrl,
                     source: a.source,
                     publishedAt: DateTime.parse(
                       a.publishedAt.toIso8601String(),

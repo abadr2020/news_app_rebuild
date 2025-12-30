@@ -69,6 +69,19 @@ class NewsCard extends StatelessWidget {
                             ),
                           );
                         },
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            width: double.infinity,
+                            height: double.infinity,
+                            color: scheme.surfaceContainerHighest.withValues(
+                              alpha: 0.3,
+                            ),
+                            child: const Icon(
+                              Icons.image_not_supported,
+                              size: 48,
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ),

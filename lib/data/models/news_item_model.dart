@@ -23,7 +23,7 @@ class NewsItemModel {
     id: json['source']['id'] ?? "no id",
     title: json["title"] ?? "No Title",
     description: json["description"] ?? "No Description",
-    imageUrl: json["urlToImage"] ?? "https://via.placeholder.com/150",
+    imageUrl: json["urlToImage"] ?? "https://placehold.co/600x400",
     source: json["source"]["name"] ?? "Unknown Source",
     publishedAt: DateTime.parse(json["publishedAt"] ?? "2024-01-01T00:00:00Z"),
     author: json['author'] ?? "Unknown Author",
