@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/data/models/news_item_model.dart';
 // UI-only: receive a simple map
 
 class NewsDetailScreen extends StatelessWidget {
-  final dynamic article;
+  final NewsItemModel article;
 
   const NewsDetailScreen({super.key, required this.article});
 
@@ -27,11 +28,8 @@ class NewsDetailScreen extends StatelessWidget {
                 fit: StackFit.expand,
                 children: [
                   Hero(
-                    tag: "image_${article['id']}",
-                    child: Image.network(
-                      article['imageUrl'],
-                      fit: BoxFit.cover,
-                    ),
+                    tag: "image_${article.id}",
+                    child: Image.network(article.imageUrl, fit: BoxFit.cover),
                   ),
                   DecoratedBox(
                     decoration: BoxDecoration(
@@ -48,7 +46,7 @@ class NewsDetailScreen extends StatelessWidget {
                 ],
               ),
               title: Text(
-                article['source'],
+                article.source,
                 style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w700,
@@ -60,7 +58,7 @@ class NewsDetailScreen extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
-                Text(article['title'], style: textTheme.headlineSmall),
+                Text(article.title, style: textTheme.headlineSmall),
                 const SizedBox(height: 8),
                 Row(
                   children: [
@@ -71,7 +69,7 @@ class NewsDetailScreen extends StatelessWidget {
                     ),
                     const SizedBox(width: 6),
                     Text(
-                      article['source'],
+                      article.source,
                       style: TextStyle(
                         color: scheme.onSurfaceVariant,
                         fontWeight: FontWeight.w600,
@@ -85,13 +83,13 @@ class NewsDetailScreen extends StatelessWidget {
                     ),
                     const SizedBox(width: 6),
                     Text(
-                      _timeAgo(article['publishedAt'] as DateTime),
+                      _timeAgo(article.publishedAt),
                       style: TextStyle(color: scheme.onSurfaceVariant),
                     ),
                   ],
                 ),
                 const SizedBox(height: 14),
-                if (article['author'] != null)
+                if (article.author != "")
                   Row(
                     children: [
                       CircleAvatar(
@@ -105,20 +103,20 @@ class NewsDetailScreen extends StatelessWidget {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        "By ${article['author']}",
+                        "By ${article.author}",
                         style: TextStyle(color: scheme.onSurfaceVariant),
                       ),
                     ],
                   ),
-                if (article['author'] != null) const SizedBox(height: 12),
+                if (article.author != "") const SizedBox(height: 12),
                 Text(
-                  article['description'],
+                  article.description,
                   style: textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
                 ),
                 const SizedBox(height: 12),
-                Text(article['content'], style: textTheme.bodyMedium),
+                Text(article.content, style: textTheme.bodyMedium),
               ]),
             ),
           ),

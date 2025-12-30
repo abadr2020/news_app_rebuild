@@ -80,40 +80,10 @@ class _NewsListScreenState extends State<NewsListScreen> {
                 ),
               );
             } else {
-              return ListView.builder(
-                physics: const AlwaysScrollableScrollPhysics(),
-                padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
-                itemCount: newsArticles.length,
-                itemBuilder: (context, index) {
-                  final a = newsArticles[index];
-                  return NewsCard(
-                    id: a.id,
-                    title: a.title,
-                    description: a.description,
-                    imageUrl: a.imageUrl ?? "https://via.placeholder.com/150",
-                    source: a.source,
-                    publishedAt: DateTime.parse(
-                      a.publishedAt.toIso8601String(),
-                    ),
-                    onTap: () {
-                      Navigator.of(context).push(
-                        PageRouteBuilder(
-                          transitionDuration: const Duration(milliseconds: 400),
-                          pageBuilder: (_, __, ___) =>
-                              NewsDetailScreen(article: newsArticles[index]),
-                          transitionsBuilder: (_, anim, __, child) =>
-                              FadeTransition(opacity: anim, child: child),
-                        ),
-                      );
-                    },
-                  );
-                },
-              );
-              // return ListView.separated(
+              // return ListView.builder(
               //   physics: const AlwaysScrollableScrollPhysics(),
               //   padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
               //   itemCount: newsArticles.length,
-              //   separatorBuilder: (_, __) => const SizedBox(height: 16),
               //   itemBuilder: (context, index) {
               //     final a = newsArticles[index];
               //     return NewsCard(
@@ -139,6 +109,36 @@ class _NewsListScreenState extends State<NewsListScreen> {
               //     );
               //   },
               // );
+              return ListView.separated(
+                physics: const AlwaysScrollableScrollPhysics(),
+                padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
+                itemCount: newsArticles.length,
+                separatorBuilder: (_, __) => const SizedBox(height: 16),
+                itemBuilder: (context, index) {
+                  final a = newsArticles[index];
+                  return NewsCard(
+                    id: a.id,
+                    title: a.title,
+                    description: a.description,
+                    imageUrl: a.imageUrl ?? "https://via.placeholder.com/150",
+                    source: a.source,
+                    publishedAt: DateTime.parse(
+                      a.publishedAt.toIso8601String(),
+                    ),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        PageRouteBuilder(
+                          transitionDuration: const Duration(milliseconds: 400),
+                          pageBuilder: (_, __, ___) =>
+                              NewsDetailScreen(article: newsArticles[index]),
+                          transitionsBuilder: (_, anim, __, child) =>
+                              FadeTransition(opacity: anim, child: child),
+                        ),
+                      );
+                    },
+                  );
+                },
+              );
             }
           } else {
             return Center(
