@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/screens/splash_screen.dart';
+import 'package:news_app/presentations/screens/splash_screen.dart';
 import 'package:news_app/theme.dart';
 
 void main() {
@@ -21,6 +21,8 @@ class NewsApp extends StatelessWidget {
 }
 
 /// To-DO:
-/// Add dio service for API calls
-/// Add Service for fetching news articles
+/// Add cubit plugins
+/// Add cubit for managing news state
+/// update cubit with logic to fetch news using DioService
 /// Add models for news articles
+/// Use model to parse and display news articles in the UI

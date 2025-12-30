@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 // UI-only: receive a simple map
 
 class NewsDetailScreen extends StatelessWidget {
-  final Map<String, dynamic> article;
+  final dynamic article;
 
   const NewsDetailScreen({super.key, required this.article});
 
